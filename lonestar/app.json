@@ -3,7 +3,7 @@
     "parallelism": "parallel",
     "version": "1.00",
     "helpURI": "",
-    "label": "GATK-based SNP and INDEL called",
+    "label": "GATK-based SNP and INDEL caller",
     "shortDescription": "",
     "longDescription": "",
     "author": "Matthew Vaughn",
@@ -15,7 +15,7 @@
         "gatk"
     ],
     "ontology": [
-        "http://sswapmeet.sswap.info/algorithms/GATK"
+        "http://sswapmeet.sswap.info/agave/apps/Application"
     ],
     "executionHost": "lonestar4.tacc.teragrid.org",
     "executionType": "HPC",
@@ -49,7 +49,7 @@
             },
             "semantics": {
                 "ontology": [
-                    "http://sswapmeet.sswap.info/util/TextDocument"
+                    "http://sswapmeet.sswap.info/mime/text/X-sam", "http://sswapmeet.sswap.info/mime/application/X-bam"
                 ],
                 "minCardinality": 1,
                 "maxCardinality": 1,
@@ -72,7 +72,7 @@
             },
             "semantics": {
                 "ontology": [
-                    "http://sswapmeet.sswap.info/util/TextDocument"
+                    "http://sswapmeet.sswap.info/mime/text/X-multiFasta", "http://sswapmeet.sswap.info/mime/text/X-fasta"
                 ],
                 "minCardinality": 1,
                 "maxCardinality": 1,
@@ -211,7 +211,7 @@
             },
             "semantics": {
                 "ontology": [
-                    "http://sswapmeet.sswap.info/util/TextDocument"
+                    "http://sswapmeet.sswap.info/mime/text/Tab-separated-values"
                 ],
                 "minCardinality": "1",
                 "maxCardinality": "1",
@@ -230,7 +230,7 @@
             },
             "semantics": {
                 "ontology": [
-                    "http://sswapmeet.sswap.info/util/TextDocument"
+                    "http://sswapmeet.sswap.info/mime/text/Tab-separated-values"
                 ],
                 "minCardinality": "1",
                 "maxCardinality": "1",
@@ -249,7 +249,7 @@
             },
             "semantics": {
                 "ontology": [
-                    "http://sswapmeet.sswap.info/util/TextDocument"
+                    "http://sswapmeet.sswap.info/mime/text/Tab-separated-values"
                 ],
                 "minCardinality": "1",
                 "maxCardinality": "1",
