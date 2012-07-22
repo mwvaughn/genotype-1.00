@@ -1,0 +1,2 @@
+This is a parallel genotyping pipeline comprised of GATK and awk implemented in the iPlant API using TACC's Parametric Launcher
+

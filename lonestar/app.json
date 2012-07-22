@@ -1,0 +1,260 @@
+{
+    "name": "gatk-1000bulls-geno-lonestar",
+    "parallelism": "parallel",
+    "version": "1.00",
+    "helpURI": "",
+    "label": "GATK-based SNP and INDEL called",
+    "shortDescription": "",
+    "longDescription": "",
+    "author": "Matthew Vaughn",
+    "tags": [
+        "next-gen",
+        "genotyping",
+        "snp",
+        "indel",
+        "gatk"
+    ],
+    "ontology": [
+        "http://sswapmeet.sswap.info/algorithms/GATK"
+    ],
+    "executionHost": "lonestar4.tacc.teragrid.org",
+    "executionType": "HPC",
+    "deploymentPath": "/iplant/home/vaughn/applications/genotype-1.00/lonestar",
+    "templatePath": "run.sh",
+    "testPath": "test.sh",
+    "checkpointable": "false",
+    "modules": [
+        "purge",
+        "load TACC",
+        "load launcher",
+        "load jdk64",
+        "load samtools",
+        "load gatk",
+        "load picard",
+        "load bedtools",
+        "load irods"
+    ],
+    "inputs": [
+        {
+            "id": "alignFile",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": true,
+                "visible": true
+            },
+            "details": {
+                "label": "SAM or BAM file resulting from alignment to reference genome",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/TextDocument"
+                ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "sam-0.1.2"
+                ]
+            }
+        },
+        {
+            "id": "databaseFasta",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true
+            },
+            "details": {
+                "label": "FASTA file against which alignment was generated",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/TextDocument"
+                ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "fasta-0"
+                ]
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "id": "platform",
+            "value": {
+                "default": "illumina",
+                "validator": "",
+                "required": true,
+                "visible": false,
+                "type": "string"
+            },
+            "details": {
+                "label": "Platform or technology used to produce the reads",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "sampleid",
+            "value": {
+                "default": "animal01",
+                "validator": "",
+                "required": true,
+                "visible": true,
+                "type": "string"
+            },
+            "details": {
+                "label": "Biological sample ID",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "library",
+            "value": {
+                "default": 1,
+                "validator": "",
+                "required": true,
+                "visible": true,
+                "type": "string"
+            },
+            "details": {
+                "label": "Library ID",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "center",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true,
+                "type": "string"
+            },
+            "details": {
+                "label": "Name of sequencing center producing the reads.",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "stand_call_conf",
+            "value": {
+                "default": 4,
+                "validator": "",
+                "required": true,
+                "visible": true,
+                "type": "number"
+            },
+            "details": {
+                "label": "The minimum phred-scaled confidence threshold at which variants not at 'trigger' track sites should be called.",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:float"
+                ]
+            }
+        },
+        {
+            "id": "dcov",
+            "value": {
+                "default": 5,
+                "validator": "",
+                "required": true,
+                "visible": true,
+                "type": "number"
+            },
+            "details": {
+                "label": "Coverage [integer] to downsample to at any given locus; note that downsampled reads are randomly selected from all possible reads at a locus",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:int"
+                ]
+            }
+        }
+    ],
+    "outputs": [
+        {
+            "id": "gatk_indel_vcf",
+            "value": {
+                "default": "GATK.INDELS.vcf",
+                "validator": ""
+            },
+            "details": {
+                "label": "Indel VCF file",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/TextDocument"
+                ],
+                "minCardinality": "1",
+                "maxCardinality": "1",
+                "fileType": "TEXT-0"
+            }
+        },
+        {
+            "id": "gatk_snp_vcf",
+            "value": {
+                "default": "GATK.SNPS.vcf",
+                "validator": ""
+            },
+            "details": {
+                "label": "SNP VCF file",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/TextDocument"
+                ],
+                "minCardinality": "1",
+                "maxCardinality": "1",
+                "fileType": "TEXT-0"
+            }
+        },
+        {
+            "id": "gatk_both_vcf",
+            "value": {
+                "default": "GATK.BOTH.vcf",
+                "validator": ""
+            },
+            "details": {
+                "label": "All variants VCF file",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/TextDocument"
+                ],
+                "minCardinality": "1",
+                "maxCardinality": "1",
+                "fileType": "TEXT-0"
+            }
+        }
+    ]
+}
